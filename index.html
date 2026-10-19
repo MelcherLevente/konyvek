@@ -18,9 +18,16 @@
     <div>
         <button onclick="betoltes(konyvek)">Összes könyv</button>
         <button onclick="szabadKonyvek()">Szabad könyvek</button>
-        <button>Legrégebbi könyvek</button>
-        <button>Legvastagabb könyv</button>
-        <button>Átlagos oldalszám</button>
+        <button onclick="legregebbiKonyv()">Legrégebbi könyv</button>
+        <button onclick="legvastagabbKonyv()">Legvastagabb könyv</button>
+        <button onclick="atlagosOldalszam()">Átlagos oldalszám</button>
+
+        <select name="kategoriaLista">
+            <option value="Regény">Regény</option>
+            <option value="Sci-fi">Sci-fi</option>
+            <option value="Történelmi">Történelmi</option>
+            <option value="Fantasy">Fantasy</option>
+        </select>
     </div>
 
     <table id="tablazat">
@@ -28,16 +35,22 @@
             <tr>
                 <th>Cím</th>
                 <th>Szerző</th>
+                <th>Kategória</th>
                 <th>Kiadás éve</th>
                 <th>Oldalszám</th>
                 <th>Állapot</th>
                 <th>Kölcsönzés/Visszahozás</th>
+                <th>Törlés</th>
             </tr>
         </thead>
         <tbody id="tablazatTorzs">
             
         </tbody>
     </table>
+
+    <p id="legregebbi"></p>
+    <p id="legvastagabb"></p>
+    <p id="atlagosOldalszam"></p>
 
 <script src="main.js"></script>
 </body>
