@@ -5,13 +5,11 @@ function Konyv(cim, szerzo, kiadas, oldalszam){
     this.oldalszam = oldalszam
     this.kolcsonozve = false
     this.kolcsonoz = function(){
-        if(this.kolcsonoz){
-            this.kolcsonoz = false
+        if(this.kolcsonozve){
+            this.kolcsonozve = false
         }
-    }
-    this.visszahoz = function(){
-        if(!this.kolcsonoz){
-            this.kolcsonoz = true
+        else{
+            this.kolcsonozve = true
         }
     }
 }
@@ -37,15 +35,31 @@ function konyvHozzaadas(){
 
 function betoltes(konyvek){
     const tablazatTorzs = document.getElementById("tablazatTorzs")
-    const tablazatSor = konyvek.map((konyv) => `
+    const tablazatSor = konyvek.map((konyv, index) => `
         <tr>
             <td>${konyv.cim}</td>
             <td>${konyv.szerzo}</td>
             <td>${konyv.kiadas}</td>
             <td>${konyv.oldalszam}</td>
-            <td>${(konyv.kolcsonozve) ? "Kölcsönözhető" : "Nem kölcsönözhető"}</td>
+            <td>${(konyv.kolcsonozve) ? "Nem kölcsönözhető" : "Kölcsönözhető"}</td>
+            <td><button type="button" onclick="kolcsonzes(${index})">${(konyv.kolcsonozve) ? "Visszahozás" : "Kölcsönzés"}</button></td>
         </tr>`).join('')
 
     tablazatTorzs.innerHTML = tablazatSor
+}
+
+function kolcsonzes(index){
+    konyvek[index].kolcsonoz()
+    betoltes(konyvek)
+}
+
+function szabadKonyvek(){
+    let szabadKonyvek = []
+    konyvek.forEach(konyv => {
+        if(konyv.kolcsonozve === false){
+            szabadKonyvek.push(konyv)
+        }
+    });
+    betoltes(szabadKonyvek)
 }
 
