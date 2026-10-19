@@ -4,23 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Könyvek</title>
-    <script src="main.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div style="margin: 30px 10px;">
-        <input type="text" placeholder="Könyv címe">
-        <input type="text" placeholder="Szerző">
-        <input type="number" placeholder="Kiadás éve">
-        <input type="number" placeholder="Oldalszám">
+    <div>
+        <input type="text" placeholder="Könyv címe" id="cim">
+        <input type="text" placeholder="Szerző" id="szerzo">
+        <input type="number" placeholder="Kiadás éve" id="kiadas">
+        <input type="number" placeholder="Oldalszám" id="oldalszam">
         <button onclick="konyvHozzaadas()">Könyv hozzáadása</button>
     </div>
 
-    <div style="margin: 30px 10px;">
-        <button>Összes könyv</button>
+    <div>
+        <button onclick="betoltes(konyvek)">Összes könyv</button>
         <button>Szabad könyvek</button>
         <button>Legrégebbi könyvek</button>
         <button>Legvastagabb könyv</button>
         <button>Átlagos oldalszám</button>
     </div>
+
+    <table id="tablazat">
+        <thead>
+            <tr>
+                <th>Cím</th>
+                <th>Szerző</th>
+                <th>Kiadás éve</th>
+                <th>Oldalszám</th>
+                <th>Állapot</th>
+            </tr>
+        </thead>
+        <tbody id="tablazatTorzs">
+            
+        </tbody>
+    </table>
+
+<script src="main.js"></script>
 </body>
 </html>

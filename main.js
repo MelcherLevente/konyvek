@@ -16,12 +16,36 @@ function Konyv(cim, szerzo, kiadas, oldalszam){
     }
 }
 
+
 const egriCsillagok = new Konyv("Egri csillagok", "Gárdonyi Géza", 1901, 605)
 const aPalUtcaiFiuk = new Konyv("A Pál utcai fiúk", "Molnár Ferenc", 1907, 200)
 const aranyEmber = new Konyv("Az arany ember", "Jókai Mór", 1872, 550)
 
-
+let konyvek = [egriCsillagok, aPalUtcaiFiuk, aranyEmber]
 
 function konyvHozzaadas(){
-    
+    let cim = document.getElementById("cim").value
+    let szerzo = document.getElementById("szerzo").value
+    let kiadas = document.getElementById("kiadas").value
+    let oldalszam = document.getElementById("oldalszam").value
+    const ujKonyv = new Konyv(cim, szerzo, kiadas, oldalszam)
+
+    konyvek.push(ujKonyv)
+
+    betoltes(konyvek)
 }
+
+function betoltes(konyvek){
+    const tablazatTorzs = document.getElementById("tablazatTorzs")
+    const tablazatSor = konyvek.map((konyv) => `
+        <tr>
+            <td>${konyv.cim}</td>
+            <td>${konyv.szerzo}</td>
+            <td>${konyv.kiadas}</td>
+            <td>${konyv.oldalszam}</td>
+            <td>${(konyv.kolcsonozve) ? "Kölcsönözhető" : "Nem kölcsönözhető"}</td>
+        </tr>`).join('')
+
+    tablazatTorzs.innerHTML = tablazatSor
+}
+
