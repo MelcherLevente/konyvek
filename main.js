@@ -23,15 +23,55 @@ const aranyEmber = new Konyv("Az arany ember", "Jókai Mór", "Fantasy", 1872, 5
 let konyvek = [egriCsillagok, aPalUtcaiFiuk, aranyEmber]
 
 function konyvHozzaadas(){
-    let cim = document.getElementById("cim").value
-    let szerzo = document.getElementById("szerzo").value
-    let kiadas = document.getElementById("kiadas").value
-    let oldalszam = document.getElementById("oldalszam").value
-    const ujKonyv = new Konyv(cim, szerzo, kiadas, oldalszam)
+    try{
+        let cim = document.getElementById("cim").value
+        let szerzo = document.getElementById("szerzo").value
+        let kategoria = document.getElementById("kategoria").value
+        let kiadas = document.getElementById("kiadas").value
+        let oldalszam = document.getElementById("oldalszam").value
 
-    konyvek.push(ujKonyv)
+        let cimRegex = /^[a-zA-Z0-9]+$/
+        let szerzoRegex = /^[a-zA-ZÁÉÍÓÓÖŐÚÜŰáéíóöőúüű ]+$/
+        let szamRegex = /^\d+$/
 
-    betoltes(konyvek)
+        if(cim == ""){
+            throw new Error("Add meg a könyv címét!")
+        }
+        else if (!cimRegex.test(cim)){
+            throw new Error("Hibás cím!")
+        }
+        else if(szerzo == ""){
+            throw new Error("Add meg a szerzőt!")
+        }
+        else if(!szerzoRegex.test(szerzo)){
+            throw new Error("Hibás szerző!")
+        }
+        else if(kiadas == ""){
+            throw new Error("Add meg a könyv kiadási évét!")
+        }
+        else if(!szamRegex.test(kiadas)){
+            throw new Error("A kiadási év csak számot tartalmazhat!")
+        }
+        else if(oldalszam == ""){
+            throw new Error("Add meg hány oldalas a könyv!")
+        }
+        else if(!szamRegex.test(oldalszam)){
+            throw new Error("Az oldalszám csak számot tartalmazhat!")
+        }
+        else{
+            const ujKonyv = new Konyv(cim, szerzo, kategoria, kiadas, oldalszam)
+
+            konyvek.push(ujKonyv)
+
+            betoltes(konyvek)
+        }
+    }
+    catch(error){
+        document.getElementById("errorUzenet").textContent = error.message
+    }
+
+
+
 }
 
 function betoltes(konyvek){
@@ -51,6 +91,7 @@ function betoltes(konyvek){
     tablazatTorzs.innerHTML = tablazatSor
     
     inputokUritese()
+    document.getElementById("errorUzenet").textContent = ""
 }
 
 function kolcsonzes(index){
@@ -116,25 +157,13 @@ function inputokUritese(){
     document.getElementById("oldalszam").value = ""
 }
 
-// function kategoriaSzerint(){
-//     let kategoriaLista = []
-//     if(document.getElementById("kategoriaLista").onselectionchange){
-//         konyvek.forEach(konyv => {
-//             if(konyv.kategoria = document.getElementById("kategoriaLista").value){
-//                 kategoria.push(konyv)
-//             }
-//         });
-//     }
+function kategoriaSzerint(){
+    let kategoriaLista = []
+    konyvek.forEach(konyv => {
+        if(konyv.kategoria == document.getElementById("kategoriaLista").value){
+            kategoriaLista.push(konyv)
+        }
+    });
 
-//     betoltes(kategoriaLista)
-// }
-
-// let kategoriaLista = []
-// document.getElementById("kategoriaLista").onselectionchange =
-//     konyvek.forEach(konyv => {
-//         if(konyv.kategoria = document.getElementById("kategoriaLista").value){
-//             kategoria.push(konyv)
-//         }
-//     });
-
-// betoltes(kategoriaLista)
+    betoltes(kategoriaLista)
+}

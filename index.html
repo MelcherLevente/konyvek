@@ -10,10 +10,18 @@
     <div>
         <input type="text" placeholder="Könyv címe" id="cim">
         <input type="text" placeholder="Szerző" id="szerzo">
+        <select id="kategoria">
+            <option value="Regény">Regény</option>
+            <option value="Sci-fi">Sci-fi</option>
+            <option value="Történelmi">Történelmi</option>
+            <option value="Fantasy">Fantasy</option>
+        </select>
         <input type="number" placeholder="Kiadás éve" id="kiadas">
         <input type="number" placeholder="Oldalszám" id="oldalszam">
         <button onclick="konyvHozzaadas()">Könyv hozzáadása</button>
     </div>
+
+    <p id="errorUzenet"></p>
 
     <div>
         <button onclick="betoltes(konyvek)">Összes könyv</button>
@@ -22,7 +30,7 @@
         <button onclick="legvastagabbKonyv()">Legvastagabb könyv</button>
         <button onclick="atlagosOldalszam()">Átlagos oldalszám</button>
 
-        <select name="kategoriaLista">
+        <select id="kategoriaLista" onchange="kategoriaSzerint()">
             <option value="Regény">Regény</option>
             <option value="Sci-fi">Sci-fi</option>
             <option value="Történelmi">Történelmi</option>
