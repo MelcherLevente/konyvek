@@ -1,16 +1,259 @@
-div{
-    margin: 30px 10px;
+
+/* ===== ALAPOK ===== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #7655e8;
+    --primary-dark: #6240d5;
+    --primary-light: #f0ebff;
+    --background: #f7f6fc;
+    --surface: #ffffff;
+    --text: #25233a;
+    --muted: #85839a;
+    --border: #eeedf5;
+    --shadow: 0 8px 30px rgba(49, 35, 100, 0.055);
 }
-table{
-    border-collapse: collapse;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-td, th{
-    border: 1px solid black;
-    padding: 10px 8px;
-    text-align: center;
+
+body {
+    font-family: 'Inter', sans-serif;
+    background:
+        radial-gradient(ellipse at top left, #eee8ff 0, transparent 38%),
+        var(--background);
+    color: var(--text);
+    padding: 48px 5%;
+    min-height: 100vh;
+    line-height: 1.6;
 }
-button{
-    padding: 6px 4px;
-    background-color: white;
-    border: 2px solid black;
+
+/* ===== PANELEK ===== */
+body > div {
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 26px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+/* ===== BEVITELI MEZŐK ===== */
+input,
+select {
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text);
+    background: #fbfaff;
+    border: 1px solid #e9e6f3;
+    border-radius: 11px;
+    padding: 13px 15px;
+    outline: none;
+    transition: all 0.25s ease;
+}
+
+input {
+    flex: 1 1 150px;
+    min-width: 0;
+}
+
+input::placeholder {
+    color: #aaa7bc;
+}
+
+input:hover,
+select:hover {
+    border-color: #c9bafa;
+}
+
+input:focus,
+select:focus {
+    background: #ffffff;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(118, 85, 232, 0.11);
+}
+
+select {
+    cursor: pointer;
+    max-width: 100%;
+}
+
+/* ===== GOMBOK ===== */
+button {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #896cf1, #704ce0);
+    border: none;
+    border-radius: 11px;
+    padding: 13px 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(118, 85, 232, 0.16);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #7958e8, #603bd0);
+    box-shadow: 0 7px 17px rgba(118, 85, 232, 0.25);
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* ===== HIBAÜZENET ===== */
+#errorUzenet {
+    color: #e34c68;
+    background: #fff0f2;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    margin: -10px 0 22px;
+    padding: 0;
+}
+
+#errorUzenet:not(:empty) {
+    padding: 12px 16px;
+    border: 1px solid #ffdae1;
+}
+
+/* ===== KÖNYVTÁBLÁZAT ===== */
+#tablazat {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    font-size: 13px;
+}
+
+#tablazat thead {
+    background: #f5f2ff;
+}
+
+#tablazat th {
+    color: #6f6593;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    text-align: left;
+    padding: 18px 16px;
+    white-space: nowrap;
+    border-bottom: 1px solid #eae5fa;
+}
+
+#tablazat td {
+    color: #514e65;
+    padding: 17px 16px;
+    border-bottom: 1px solid #f0eef6;
+    vertical-align: middle;
+}
+
+#tablazat tbody tr {
+    transition: background 0.2s ease;
+}
+
+#tablazat tbody tr:hover {
+    background: #faf8ff;
+}
+
+#tablazat tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ===== TÁBLÁZAT GOMBJAI ===== */
+#tablazat td button {
+    font-size: 11px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    white-space: nowrap;
+    box-shadow: none;
+}
+
+/* ===== KATEGÓRIA ÉS ÁLLAPOT MEZŐK ===== */
+#tablazat td select {
+    padding: 8px 10px;
+    font-size: 12px;
+    border-radius: 8px;
+}
+
+/* ===== EREDMÉNYKÁRTYÁK ===== */
+#legregebbi,
+#legvastagabb,
+#atlagosOldalszam {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--primary);
+    border-radius: 13px;
+    padding: 18px 22px;
+    margin-top: 14px;
+    color: #51476f;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 4px 18px rgba(49, 35, 100, 0.035);
+}
+
+/* ===== GÖRDÍTÉS MOBILON ===== */
+@media (max-width: 900px) {
+    body {
+        padding: 28px 3%;
+    }
+
+    body > div {
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    #tablazat {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 560px) {
+    body {
+        padding: 18px 12px;
+    }
+
+    body > div {
+        padding: 16px;
+        gap: 10px;
+    }
+
+    input,
+    select,
+    body > div button {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+
+    #tablazat th,
+    #tablazat td {
+        padding: 13px 12px;
+    }
+}
+
+
+#legregebbi,
+#legvastagabb,
+#atlagosOldalszam {
+    display: none;
 }

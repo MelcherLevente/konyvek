@@ -110,6 +110,7 @@ function szabadKonyvek(){
 }
 
 function legregebbiKonyv(){
+    document.getElementById("legregebbi").style.display = "block";
     let legregebbi = 10000
     let legregebbiCim = ""
     konyvek.forEach(konyv => {
@@ -123,6 +124,7 @@ function legregebbiKonyv(){
 }
 
 function legvastagabbKonyv(){
+    document.getElementById("legvastagabb").style.display = "block";
     let legvastagabb = 0
     let legvastagabbCim = ""
     konyvek.forEach(konyv => {
@@ -136,6 +138,7 @@ function legvastagabbKonyv(){
 }
 
 function atlagosOldalszam(){
+    document.getElementById("atlagosOldalszam").style.display = "block";
     let sum = 0
     let db = 0
     konyvek.forEach(konyv => {
